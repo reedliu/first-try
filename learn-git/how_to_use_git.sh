@@ -1,41 +1,55 @@
-mkdir -p ~/tmp/bwa_test/ref
+# 安装git （https://git-scm.com/downloads）
+ # 更新git 
+ git clone https://github.com/git/git
+ 
+  ###################
+ # 初始化git（本地）
+ ###################
+ # open terminal (in Mac) or git_bash (in Windows)
+ # 新建一个目录本地存放git文件
+ mkdir ~/Git_Projects
+ cd ~/Git_Projects
+ 
+  # 然后初始化
+ git init # 会生成一个.git文件 (可以通过ls -a 查看)
+ 
+  ###################
+ # github与本地git联系
+ ###################
+ cd ~/.ssh
+ ssh-keygen -t rsa -C your@mail.com
+ # 将.ssh中的id_rsa.pub复制下来，粘贴到github中【Setting=> SSH and GPG keys => New SSH keys】
+ # 再在本地终端输入
+ ssh -T git@github.com
+ # 出现Hi xxx! You've successfully autheticated，即成功
+ 
+  ###################
+ # 上传代码到github
+ ###################
+ # 在github上创建Repository，添加到本地
+ git remote add origin https://github.com/YOUR_NAME/YOUR_CODE.git
+ 
+  # 查看现在git的远程仓库
+ git remote -v
+ 
+  # 检查git 状态
+ git status
+ 
+  # 添加代码到缓冲区
+ git add YOUR/FILE
+ 
+  # 编辑代码主题
+ git commit -m "added ..."
+ 
+  # 查看修改日志
+git log
 
-###################
-# 下载基因组(19Kb)[安装entrez-direct]
-###################
-conda install -c bioconda entrez-direct
-efetch -db=nuccore -format=fasta -id=AF086833 > ~/tmp/bwa_test/ref/1976.fa
+# 上传同步
+git push -u origin master
 
-# 构建索引
-ref=~/tmp/bwa_test/ref/1976.fa
-bwa index $ref
-
-# ls ~/tmp/bwa_test/ref
-
-###################
-# 下载测试数据
-###################
-mkdir -p ~/tmp/bwa_test/raw && cd ~/tmp/bwa_test/raw
-
-# 获取全部的埃博拉病毒项目的测序数据
-esearch -db sra -query PRJNA257197 | efetch -format runinfo > runinfo.csv
-
-# 挑选SRR1972739下载
-cat runinfo.csv| grep SRR1972739 | cut -d "," -f 10 | xargs -n1 wget {}
-
-# 解压成fq文件 [为了测试，选取前1万条reads]
-fastq-dump -X10000 --split-files SRR1972739
-
-###################
-# 比对
-###################
-mkdir -p ~/tmp/bwa_test/align && cd ~/tmp/bwa_test/align
-
-r1=~/tmp/bwa_test/raw/SRR1972739_1.fastq
-r2=~/tmp/bwa_test/raw/SRR1972739_2.fastq
-ref=~/tmp/bwa_test/ref/1976.fa
-
-baw mem $ref $r1 $r2 > bwa.sam
-
-# 比对结束看一下tag
-cat bwa.sam | cut -f 12-20 | head
+  ###################
+ # 管理多个仓库
+ ###################
+ # 想要去不同的仓库同步本地代码，可以先clone到本地
+ git clone NEW_GIT_URL
+ # 再用git add、git commit、git push操作
