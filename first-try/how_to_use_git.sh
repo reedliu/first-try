@@ -29,11 +29,14 @@ ssh -T git@github.com
 # 在github上创建Repository，添加到本地
 git remote add origin https://github.com/YOUR_NAME/YOUR_CODE.git
 
+# 查看现在git的远程仓库
+git remote -v
+
 # 检查git 状态
 git status
 
-# 添加代码
-git add 
+# 添加代码到缓冲区
+git add YOUR/FILE
 
 # 编辑代码主题
 git commit -m "added ..."
