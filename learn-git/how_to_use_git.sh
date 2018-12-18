@@ -1,3 +1,12 @@
+### ---------------
+###
+### Create: Yunze Liu (Reed Liu)
+### Date: 2018-12-18
+### CAAS/SDAU
+### Update Log: 2018-12-18  add git branch
+###
+### ---------------
+
 # 安装git （https://git-scm.com/downloads）
  # 更新git 
  git clone https://github.com/git/git
@@ -53,3 +62,11 @@ git push -u origin master
  # 想要去不同的仓库同步本地代码，可以先clone到本地
  git clone NEW_GIT_URL
  # 再用git add、git commit、git push操作
+
+ # 添加branch
+ git branch NAME
+ # 删除branch
+ git branch -D NAME
+ # 指定branch
+ git checkout NAME
+
