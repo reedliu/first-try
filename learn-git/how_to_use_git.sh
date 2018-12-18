@@ -75,4 +75,6 @@ git push -u origin master
 ##################
 # 出现First, rewinding head to replay your work on top of it...
 git fetch origin
-git reset --hard origin
+git reset --hard origin/master
+git pull
+
