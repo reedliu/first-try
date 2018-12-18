@@ -2,7 +2,7 @@
 
 ### ---------------
 ###
-### Create: Yunze Liu
+### Create: Yunze Liu (Reed Liu)
 ### Date: 2018-12-18
 ### CAAS/AGIS/SDAU
 ### 
@@ -28,6 +28,9 @@ wget http://www.ebi.ac.uk/arrayexpress/files/E-MTAB-5130/E-MTAB-5130.sdrf.txt
 tail -n +2 E-MTAB-5130.sdrf.txt | awk '{print $(NF-6)}' >id
 
 cat id | while read id; do wget -c $id; done
+
+# if download sra data, then 
+# ls *sra |while read id; do fastq-dump --split-3 $id;done
 
 ################################################
 # Download reference data(genome/annotation)
