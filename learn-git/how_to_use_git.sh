@@ -70,3 +70,9 @@ git push -u origin master
  # 指定branch
  git checkout NAME
 
+##################
+# 问题
+##################
+# 出现First, rewinding head to replay your work on top of it...
+git fetch origin
+git reset --hard origin
