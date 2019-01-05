@@ -36,7 +36,7 @@ deploy:
   branch: master
 ```
 
-#### 添加新建的页面
+### 添加新建的页面
 
 ```shell
 # 默认只有Home和Archives，其他的都需要自己新建
